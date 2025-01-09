@@ -1,0 +1,214 @@
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#MainDiv {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgb(26, 26, 26);
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(0%);
+}
+
+#MainDiv.hidden {
+  transform: translateY(100%);
+}
+
+#LeftPanel {
+  width: 50vh;
+  height: 100%;
+  left: calc(43vw - 50vh);
+  position: absolute;
+  margin-top: 10vh;
+  pointer-events: none;
+}
+
+#RightPanel {
+  width: 50vh;
+  height: 100%;
+  position: absolute;
+  padding: 10vh calc(50vw - 50vh) 0 57vw;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+#RightPanel::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+#MouseGlow {
+  width: 30vmax;
+  height: 30vmax;
+  background-image: radial-gradient(circle farthest-side, white, transparent);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  opacity: 20%;
+}
+
+h1 {
+  font-size: 5.5vh;
+  margin: 0 0 1vh 0;
+  color: white;
+  font-weight: bold;
+  pointer-events: auto;
+}
+
+h2 {
+  font-size: 2vh;
+  margin: 0 0 1.5vh 0;
+  color: white;
+  font-weight: normal;
+  pointer-events: auto;
+}
+
+p {
+  font-size: 1.6vh;
+  margin: 0;
+  color: gray;
+  line-height: 2.5vh;
+  pointer-events: auto;
+}
+
+.NavContainer {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-100%);
+}
+
+.NavItem {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.NavItemDot {
+  width: 1.1vh;
+  height: 1.1vh;
+  border-radius: 50%;
+  background-color: gray;
+  transition: all 0.3s ease;
+}
+
+.NavItemText {
+  margin-left: 1.1vh;
+  font-size: 1.6vh;
+  color: gray;
+  transition: color 0.3s ease;
+}
+
+.NavItem.Active .NavItemDot {
+  background-color: white;
+  transform: scale(1.5);
+}
+
+.NavItem.Active .NavItemText {
+  color: white;
+}
+
+.Section {
+  margin-bottom: 10vh;
+}
+
+#SocialsContainer {
+  position: absolute;
+  top: 80vh;
+  transform: translateY(-100%);
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 2.5vh;
+}
+
+#SocialsContainer a {
+  transform: scale(1);
+  filter: invert(100%) brightness(50%);
+  transition: all 0.1s ease;
+  pointer-events: auto;
+}
+
+#SocialsContainer a:hover {
+  transform: scale(1.1);
+  filter: invert(100%) brightness(100%);
+}
+
+.Project {
+  margin-bottom: 2vh;
+  padding: 0.75vh 0.75vh 0.75vh 0.75vh;
+  border-radius: 0.75vh;
+
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.Project:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.Project {
+  margin-bottom: 2vh;
+  padding: 0.75vh 0.75vh 0.75vh 0.75vh;
+  border-radius: 0.75vh;
+  border: 1px solid white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+.Project p {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.Project span {
+  font-size: 1.4vh;
+  margin-left: 10px;
+  color: rgb(128, 128, 128);
+}
+
+.Project span:last-child {
+  margin-left: auto; /* Pushes the last span to the right */
+}
+
+.mouse-cursor-gradient-tracking {
+  position: relative;
+  background: #7983ff;
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+
+.mouse-cursor-gradient-tracking::before {
+  --size: 100px;
+  content: "";
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, pink, transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+}

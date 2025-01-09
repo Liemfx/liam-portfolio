@@ -3,73 +3,117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wh0l3 l0tta r3d</title>
-
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f0f0f0;
-      }
-
-      .cartier {
-        object-fit: cover;
-        object-position: center;
-        width: 200px;
-        height: 250px;
-      }
-
-      p {
-        font-family: Arial, sans-serif;
-        margin: 0px;
-      }
-
-      .name {
-        font-weight: bold;
-        font-size: 20px;
-        margin: 10px 0px 8px 10px;
-      }
-
-      .mutuals {
-        color: rgb(100, 100, 100);
-        margin: 0px 0px 15px 10px;
-      }
-
-      .add-button {
-        background-color: #3975e3;
-        border: none;
-        color: white;
-        padding: 10px;
-        width: 115px;
-        height: 40px;
-        border-radius: 5px;
-        font-size: 16px;
-        margin: 0px 0px 10px 10px;
-        cursor: pointer;
-      }
-
-      .profile {
-        display: inline-block;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
-      }
-    </style>
+    <title>Document</title>
+    <link rel="stylesheet" href="Styles/Main.css" />
   </head>
   <body>
-    <div class="profile">
-      <img class="cartier" src="carti.jpg" />
-      <div>
-        <p class="name">Liam</p>
-        <p class="mutuals">2 mutual friends</p>
-        <button class="add-button">Add Friend</button>
+    <div id="MainDiv">
+      <div id="MouseGlow"></div>
+      <div id="RightPanel">
+        <div id="Section1" class="Section">
+          <h2>About</h2>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quos qui rem numquam
+            earum eius nobis repudiandae quasi debitis, expedita quibusdam quidem ratione omnis.
+            Sapiente neque facere doloribus itaque libero.
+          </p>
+        </div>
+        <div id="Section2" class="Section">
+          <h2>Projects</h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. A consectetur at quia,
+            exercitationem modi quisquam unde id explicabo sit odio maxime mollitia, praesentium
+            ducimus animi possimus neque aliquid consequatur tempora? Unde minus quae sed
+            necessitatibus facilis ipsam sunt aut, neque voluptatum harum obcaecati, doloremque
+            facere quos mollitia eum dicta, repudiandae omnis dolore. Soluta voluptatibus similique
+            deleniti amet distinctio praesentium quibusdam.
+          </p>
+          <br />
+
+          <a href="https://github.com/Liemfx/PMUHemsida" target="_blank" class="Project">
+            <p style="color: white; font-weight: bold">
+              Company Website
+              <span>HTML, CSS Website</span>
+              <span>2024</span>
+            </p>
+          </a>
+
+          <a href="https://github.com/Liemfx/Wexteras" target="_blank" class="Project">
+            <p style="color: white; font-weight: bold">
+              Greenhouse
+              <span>Self Regulating Greenhouse</span>
+              <span>2023</span>
+            </p>
+          </a>
+        </div>
+        <div id="Section3" class="Section">
+          <h2>Experience</h2>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit tempora illo qui ducimus
+            in vel porro soluta odit. Doloribus eum harum quos commodi aliquam qui placeat ab magnam
+            accusantium reiciendis. Maxime harum nesciunt, unde nobis reiciendis, voluptates soluta
+            perspiciatis, minus recusandae dolore neque ea illum! Magni, officiis quae ipsam
+            excepturi voluptate repellat, ipsum ratione ad tenetur optio, sed voluptates obcaecati?
+            Quam dolorem aliquam vero tenetur inventore quisquam earum quibusdam illo reiciendis,
+            ducimus aliquid maxime! At quos dolor aliquid ex ad, cupiditate, aspernatur minus
+            laudantium totam officiis distinctio, quia debitis provident.
+          </p>
+        </div>
+        <p style="padding-bottom: 95vh; font-size: 1.25vh">
+          Developed by
+          <m>Liam Mardnas</m>
+          in
+          <m>Visual Studio Code</m>
+          , built with raw
+          <m>HTML</m>
+          ,
+          <m>CSS</m>
+          and
+          <m>JavaScript</m>
+          no extra libraries or tools needed.
+        </p>
+      </div>
+      <div id="LeftPanel">
+        <h1>Liam Mardnas</h1>
+        <h2>Aspiring Web Developer</h2>
+        <p>
+          With a deep passion for programming and
+          <br />
+          a diverse portfolio of innovative and self
+          <br />
+          driven projects.
+        </p>
+
+        <nav class="NavContainer">
+          <div class="NavItem" datasection="Section1">
+            <div class="NavItemDot"></div>
+            <span class="NavItemText">About</span>
+          </div>
+          <div class="NavItem" datasection="Section2">
+            <div class="NavItemDot"></div>
+            <span class="NavItemText">Projects</span>
+          </div>
+          <div class="NavItem" datasection="Section3">
+            <div class="NavItemDot"></div>
+            <span class="NavItemText">Experience</span>
+          </div>
+        </nav>
+
+        <div id="SocialsContainer">
+          <a href="https://github.com/Liemfx" target="_blank" title="Github">
+            <img src="Images/GithubIcon.png" alt="Github" style="width: 30px; height: 30px" />
+          </a>
+
+          <a href="mailto:liam.mardnas07@gmail.com" target="_blank" title="Email">
+            <img src="Images/EmailIcon.png" alt="Email" style="width: 30px; height: 30px" />
+          </a>
+
+          <a href="#" target="_blank" title="CV">
+            <img src="Images/CVIcon.png" alt="CV" style="width: 30px; height: 30px" />
+          </a>
+        </div>
       </div>
     </div>
+    <script src="Scripts/Main.js"></script>
   </body>
 </html>
