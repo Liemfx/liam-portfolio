@@ -24,8 +24,10 @@ const database = getDatabase(app);
 
 function get_viewers_ip(json) {
   const viewers_ip = json.ip;
-  // Fetch additional information using the ip-api.com API
-  fetch(`http://ip-api.com/json/${viewers_ip}`)
+  // Fetch additional information using the ipgeolocation.io API
+  fetch(
+    `https://api.ipgeolocation.io/ipgeo?apiKey=33a97eb12e8b405c86573310c0e8363d&ip=${viewers_ip}`
+  )
     .then((response) => response.json())
     .then((data) => {
       count_view(viewers_ip, data);
@@ -41,10 +43,10 @@ function count_view(viewers_ip, additionalInfo) {
     viewers_ip: viewers_ip,
     date: currentDate, // Add the current date and time
     city: additionalInfo.city,
-    region: additionalInfo.regionName,
-    country: additionalInfo.country,
-    latitude: additionalInfo.lat,
-    longitude: additionalInfo.lon,
+    region: additionalInfo.state_prov,
+    country: additionalInfo.country_name,
+    latitude: additionalInfo.latitude,
+    longitude: additionalInfo.longitude,
   })
     .then(() => {
       // Data stored successfully
