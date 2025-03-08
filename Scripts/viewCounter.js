@@ -3,12 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebas
 import {
   getDatabase,
   ref,
-  onValue,
-  increment,
-  serverTimestamp,
   set,
-  onDisconnect,
-  update,
+  onValue,
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
 // Your web app's Firebase configuration
@@ -25,24 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-
-// Reference to the active users count
-const activeUsersRef = ref(database, "active_users");
-
-// Increment the active users count
-const userRef = ref(database, `active_users/${Date.now()}`);
-set(userRef, {
-  timestamp: serverTimestamp(),
-});
-
-// Decrement the active users count when the user disconnects
-onDisconnect(userRef).remove();
-
-// Update the view count in real-time
-onValue(activeUsersRef, (snapshot) => {
-  const activeUsers = snapshot.size;
-  document.getElementById("view_count_text").innerHTML = activeUsers;
-});
 
 function get_viewers_ip(json) {
   const viewers_ip = json.ip;
