@@ -25,7 +25,7 @@ const database = getDatabase(app);
 function get_viewers_ip(json) {
   const viewers_ip = json.ip;
   // Fetch additional information using the ipinfo.io API
-  fetch(`https://ipinfo.io/${viewers_ip}/json?token=YOUR_IPINFO_TOKEN`)
+  fetch(`https://ipinfo.io/${viewers_ip}/json?token=970b701a57e669`)
     .then((response) => response.json())
     .then((data) => count_view(viewers_ip, data))
     .catch((error) => console.error("Error fetching IP info:", error));
@@ -33,15 +33,15 @@ function get_viewers_ip(json) {
 
 function count_view(viewers_ip, ip_info) {
   const ip_to_string = viewers_ip.replace(/\./g, "-");
-  const currentDate = new Date().toLocaleString("en-US", { timeZone: "Europe/Stockholm" }); // Adjust to Sweden time zone
+  const currentDate = new Date().toISOString(); // Get the current date and time in ISO format
 
   set(ref(database, "page_views/" + ip_to_string), {
     viewers_ip: viewers_ip,
-    date: currentDate, // Add the adjusted date and time
-    city: ip_info.city || "Unknown",
-    region: ip_info.region || "Unknown",
-    country: ip_info.country || "Unknown",
-    org: ip_info.org || "Unknown",
+    date: currentDate, // Add the current date and time
+    city: ip_info.city,
+    region: ip_info.region,
+    country: ip_info.country,
+    org: ip_info.org,
   });
 }
 
