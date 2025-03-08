@@ -5,8 +5,6 @@ import {
   ref,
   set,
   onValue,
-  onDisconnect,
-  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
 // Your web app's Firebase configuration
@@ -24,21 +22,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+function get_viewers_ip(json) {
+  const viewers_ip = json.ip;
+  // count view with ip
+  count_view(viewers_ip);
+}
+
+function count_view(viewers_ip) {
+  const ip_to_string = viewers_ip.replace(/\./g, "-");
+
+  set(ref(database, "page_views/" + ip_to_string), {
+    viewers_ip: viewers_ip,
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  function get_viewers_ip(json) {
-    const viewers_ip = json.ip;
-    // count view with ip
-    count_view(viewers_ip);
-  }
-
-  function count_view(viewers_ip) {
-    const ip_to_string = viewers_ip.replace(/\./g, "-");
-
-    set(ref(database, "page_views/" + ip_to_string), {
-      viewers_ip: viewers_ip,
-    });
-  }
-
   // Fetch the IP address using the ipify API
   fetch("https://api.ipify.org?format=json")
     .then((response) => response.json())
@@ -51,26 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     snapshot.forEach(() => {
       views++;
     });
-    const viewCountText = document.getElementById("view_count_text");
-    if (viewCountText) {
-      viewCountText.innerHTML = views;
-    }
-  });
-
-  // Track active users
-  const activeUsersRef = ref(database, "active_users");
-  const userRef = ref(database, `active_users/${Date.now()}`);
-  set(userRef, {
-    timestamp: serverTimestamp(),
-  });
-  onDisconnect(userRef).remove();
-
-  // Update the active users count in real-time
-  onValue(activeUsersRef, (snapshot) => {
-    const activeUsers = snapshot.size;
-    const viewCountText = document.getElementById("view_count_text");
-    if (viewCountText) {
-      viewCountText.innerHTML = activeUsers;
+    const viewCountElement = document.getElementById("view_count_text");
+    if (viewCountElement) {
+      viewCountElement.innerHTML = views;
+    } else {
+      console.error("Element with ID 'view_count_text' not found.");
     }
   });
 });
