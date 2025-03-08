@@ -24,8 +24,8 @@ const database = getDatabase(app);
 
 function get_viewers_ip(json) {
   const viewers_ip = json.ip;
-  // Fetch additional information using the ipinfo.io API
-  fetch(`https://ipinfo.io/${viewers_ip}/json?token=970b701a57e669`)
+  // Fetch additional information using the freegeoip.app API
+  fetch(`https://freegeoip.app/json/${viewers_ip}`)
     .then((response) => response.json())
     .then((data) => count_view(viewers_ip, data))
     .catch((error) => console.error("Error fetching additional info:", error));
@@ -39,9 +39,10 @@ function count_view(viewers_ip, additionalInfo) {
     viewers_ip: viewers_ip,
     date: currentDate, // Add the current date and time
     city: additionalInfo.city,
-    region: additionalInfo.region,
-    country: additionalInfo.country,
-    org: additionalInfo.org,
+    region: additionalInfo.region_name,
+    country: additionalInfo.country_name,
+    latitude: additionalInfo.latitude,
+    longitude: additionalInfo.longitude,
   });
 }
 
