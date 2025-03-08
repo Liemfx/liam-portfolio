@@ -24,17 +24,24 @@ const database = getDatabase(app);
 
 function get_viewers_ip(json) {
   const viewers_ip = json.ip;
-  // count view with ip
-  count_view(viewers_ip);
+  // Fetch additional information using the ipinfo.io API
+  fetch(`https://ipinfo.io/${viewers_ip}/json?token=970b701a57e669`)
+    .then((response) => response.json())
+    .then((data) => count_view(viewers_ip, data))
+    .catch((error) => console.error("Error fetching additional info:", error));
 }
 
-function count_view(viewers_ip) {
+function count_view(viewers_ip, additionalInfo) {
   const ip_to_string = viewers_ip.replace(/\./g, "-");
   const currentDate = new Date().toISOString(); // Get the current date and time in ISO format
 
   set(ref(database, "page_views/" + ip_to_string), {
     viewers_ip: viewers_ip,
     date: currentDate, // Add the current date and time
+    city: additionalInfo.city,
+    region: additionalInfo.region,
+    country: additionalInfo.country,
+    org: additionalInfo.org,
   });
 }
 
