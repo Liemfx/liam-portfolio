@@ -42,6 +42,7 @@ function count_view(viewers_ip, ip_info) {
     region: ip_info.region,
     country: ip_info.country,
     org: ip_info.org,
+    postal: ip_info.postal,
   });
 }
 
