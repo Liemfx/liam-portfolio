@@ -33,15 +33,15 @@ function get_viewers_ip(json) {
 
 function count_view(viewers_ip, ip_info) {
   const ip_to_string = viewers_ip.replace(/\./g, "-");
-  const currentDate = new Date().toLocaleString("en-US", { timeZone: "Europe/London" }); // Adjust to your desired time zone
+  const currentDate = new Date().toLocaleString("en-US", { timeZone: "Europe/Stockholm" }); // Adjust to Sweden time zone
 
   set(ref(database, "page_views/" + ip_to_string), {
     viewers_ip: viewers_ip,
     date: currentDate, // Add the adjusted date and time
-    city: ip_info.city,
-    region: ip_info.region,
-    country: ip_info.country,
-    org: ip_info.org,
+    city: ip_info.city || "Unknown",
+    region: ip_info.region || "Unknown",
+    country: ip_info.country || "Unknown",
+    org: ip_info.org || "Unknown",
   });
 }
 
