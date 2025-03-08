@@ -30,9 +30,11 @@ function get_viewers_ip(json) {
 
 function count_view(viewers_ip) {
   const ip_to_string = viewers_ip.replace(/\./g, "-");
+  const currentDate = new Date().toISOString(); // Get the current date and time in ISO format
 
   set(ref(database, "page_views/" + ip_to_string), {
     viewers_ip: viewers_ip,
+    date: currentDate, // Add the current date and time
   });
 }
 
