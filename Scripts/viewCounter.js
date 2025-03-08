@@ -24,10 +24,12 @@ const database = getDatabase(app);
 
 function get_viewers_ip(json) {
   const viewers_ip = json.ip;
-  // Fetch additional information using the freegeoip.app API
-  fetch(`https://freegeoip.app/json/${viewers_ip}`)
+  // Fetch additional information using the ip-api.com API
+  fetch(`http://ip-api.com/json/${viewers_ip}`)
     .then((response) => response.json())
-    .then((data) => count_view(viewers_ip, data))
+    .then((data) => {
+      count_view(viewers_ip, data);
+    })
     .catch((error) => console.error("Error fetching additional info:", error));
 }
 
@@ -39,11 +41,17 @@ function count_view(viewers_ip, additionalInfo) {
     viewers_ip: viewers_ip,
     date: currentDate, // Add the current date and time
     city: additionalInfo.city,
-    region: additionalInfo.region_name,
-    country: additionalInfo.country_name,
-    latitude: additionalInfo.latitude,
-    longitude: additionalInfo.longitude,
-  });
+    region: additionalInfo.regionName,
+    country: additionalInfo.country,
+    latitude: additionalInfo.lat,
+    longitude: additionalInfo.lon,
+  })
+    .then(() => {
+      // Data stored successfully
+    })
+    .catch((error) => {
+      console.error("Error storing data to Firebase:", error);
+    });
 }
 
 // Fetch the IP address using the ipify API
@@ -61,9 +69,5 @@ onValue(ref(database, "page_views"), (snapshot) => {
   const viewCountElement = document.getElementById("view_count_text");
   if (viewCountElement) {
     viewCountElement.innerHTML = views;
-  } else {
-    console.log();
   }
-
-  // No need to log an error if the element is not found
 });
