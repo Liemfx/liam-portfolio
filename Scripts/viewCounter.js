@@ -36,24 +36,20 @@ function count_view(viewers_ip) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Fetch the IP address using the ipify API
-  fetch("https://api.ipify.org?format=json")
-    .then((response) => response.json())
-    .then((data) => get_viewers_ip(data))
-    .catch((error) => console.error("Error fetching IP address:", error));
+// Fetch the IP address using the ipify API
+fetch("https://api.ipify.org?format=json")
+  .then((response) => response.json())
+  .then((data) => get_viewers_ip(data))
+  .catch((error) => console.error("Error fetching IP address:", error));
 
-  // Update the view count in real-time
-  onValue(ref(database, "page_views"), (snapshot) => {
-    let views = 0;
-    snapshot.forEach(() => {
-      views++;
-    });
-    const viewCountElement = document.getElementById("view_count_text");
-    if (viewCountElement) {
-      viewCountElement.innerHTML = views;
-    } else {
-      console.error("Element with ID 'view_count_text' not found.");
-    }
+// Update the view count in real-time
+onValue(ref(database, "page_views"), (snapshot) => {
+  let views = 0;
+  snapshot.forEach(() => {
+    views++;
   });
+  const viewCountElement = document.getElementById("view_count_text");
+  if (viewCountElement) {
+    viewCountElement.innerHTML = views;
+  }
 });
