@@ -48,12 +48,12 @@ onValue(ref(database, "page_views"), (snapshot) => {
   snapshot.forEach(() => {
     views++;
   });
-  try {
-    const viewCountElement = document.getElementById("view_count_text");
-    if (viewCountElement) {
-      viewCountElement.innerHTML = views;
-    }
-  } catch (error) {
-    // Silently catch the error without logging it
+  const viewCountElement = document.getElementById("view_count_text");
+  if (viewCountElement) {
+    viewCountElement.innerHTML = views;
+  } else {
+    console.log();
   }
+
+  // No need to log an error if the element is not found
 });
